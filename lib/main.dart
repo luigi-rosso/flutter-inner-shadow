@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.black,
                 offset: Offset(offsetX, offsetY),
                 blur: blur,
-                child: Image.network("https://cdn.2dimensions.com/splat.png"),
+                child: Image.asset("assets/splat.png"),
               ),
             ),
             Text("Blur ${blur.round()}"),
