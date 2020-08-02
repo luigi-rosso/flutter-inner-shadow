@@ -71,14 +71,13 @@ class RenderInnerShadow extends RenderProxyBox {
     if (child != null) {
       var layerPaint = Paint()..color = Colors.white;
 
-      var canvas = context.canvas;
-      canvas.saveLayer(offset & size, layerPaint);
+      context.canvas.saveLayer(offset & size, layerPaint);
       context.paintChild(child, offset);
       var shadowPaint = Paint()
         ..blendMode = ui.BlendMode.srcATop
         ..imageFilter = ui.ImageFilter.blur(sigmaX: blur, sigmaY: blur)
         ..colorFilter = ui.ColorFilter.mode(color, ui.BlendMode.srcIn);
-      canvas.saveLayer(offset & size, shadowPaint);
+      context.canvas.saveLayer(offset & size, shadowPaint);
 
       // Invert the alpha to compute inner part.
       var invertPaint = Paint()
@@ -104,8 +103,8 @@ class RenderInnerShadow extends RenderProxyBox {
           -1,
           255,
         ]);
-      canvas.saveLayer(offset & size, invertPaint);
-      canvas.translate(_offset.dx, _offset.dy);
+      context.canvas.saveLayer(offset & size, invertPaint);
+      context.canvas.translate(_offset.dx, _offset.dy);
       context.paintChild(child, offset);
       context.canvas.restore();
       context.canvas.restore();
